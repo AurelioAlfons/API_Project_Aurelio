@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class FragmentLogin : Fragment() {
 
+    // Value of the var is still empty
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var errorTextView: TextView
@@ -40,16 +41,20 @@ class FragmentLogin : Fragment() {
             insets
         }
 
-        // SignIn button click listener
+        // Sign in button OnClickListener
         view.findViewById<Button>(R.id.SignIn).setOnClickListener {
+            // Trim = remove spaces
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
+            // If username or password field empty then make error message visible
             if (username.isEmpty() || password.isEmpty()) {
                 errorTextView.text = "Username and password cannot be empty"
                 errorTextView.visibility = View.VISIBLE
             } else {
-                navigateToDashboard() // Simulate successful login
+                // If field is not empty then navigate to Dashboard
+                // We call the navigateToDashboard() function
+                navigateToDashboard()
             }
         }
     }
