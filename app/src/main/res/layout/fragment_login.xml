@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Error Message"
+        android:text="Invalid username or password"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="24sp"
