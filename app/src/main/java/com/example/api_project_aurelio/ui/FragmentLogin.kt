@@ -14,19 +14,14 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.api_project_aurelio.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
 class FragmentLogin : Fragment() {
 
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var errorTextView: TextView
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -34,41 +29,41 @@ class FragmentLogin : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize views
-//        usernameEditText = view.findViewById(R.id.username)
-//        passwordEditText = view.findViewById(R.id.password)
-//        errorTextView = view.findViewById(R.id.errorText)
+        usernameEditText = view.findViewById(R.id.usernameInput)
+        passwordEditText = view.findViewById(R.id.passwordInput)
+        errorTextView = view.findViewById(R.id.errorText)
 
         // Handle edge-to-edge display adjustments
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.fragmentLogin)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Declare variable to go Dashboard Page
-        val goToHome: Button = view.findViewById(R.id.SignIn)
+        // SignIn button click listener
+        view.findViewById<Button>(R.id.SignIn).setOnClickListener {
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
-        // On Click Listener
-        goToHome.setOnClickListener {
-            // Disable the button
-            goToHome.isEnabled = false
-
-            // Clear focus from the button
-            goToHome.clearFocus()
-
-            // Customize the navigation
-            val navOptions = NavOptions.Builder()
-                // setPopUpTo Remove LoginFragment from back stack
-                // https://developer.android.com/reference/androidx/navigation/NavOptions.Builder#setPopUpTo(kotlin.Int,kotlin.Boolean,kotlin.Boolean)
-                .setPopUpTo(R.id.fragmentLogin, true)
-                .build()
-
-            // Move from login to Dashboard
-            findNavController().navigate(R.id.action_fragmentLogin_to_fragmentDashboard, null, navOptions)
-
-            // Update the bottom navigation selectedId to Dashboard
-            val navView = activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-            navView?.selectedItemId = R.id.Navigation_dash
+            if (username.isEmpty() || password.isEmpty()) {
+                errorTextView.text = "Username and password cannot be empty"
+                errorTextView.visibility = View.VISIBLE
+            } else {
+                navigateToDashboard() // Simulate successful login
+            }
         }
+    }
+
+    // Function to navigate to Dashboard
+    private fun navigateToDashboard() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.fragmentLogin, true)
+            .build()
+
+        // Move from login to dashboard
+        findNavController().navigate(R.id.action_fragmentLogin_to_fragmentDashboard, null, navOptions)
+
+        // Update the bottom navigation selectedId to Dashboard
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.Navigation_dash
     }
 }
