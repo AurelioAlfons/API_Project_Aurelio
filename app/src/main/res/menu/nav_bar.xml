@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Logout"
+        android:id="@+id/Navigation_logout"
+        android:icon="@drawable/first_page_24px"/>
+
+    <item android:title="Dashboard"
+        android:icon="@drawable/space_dashboard_24px"
+        android:id="@+id/Navigation_dash"
+        />
+    <item android:title="Details"
+        android:id="@+id/Navigation_details"
+        android:icon="@drawable/info_24px"/>
+</menu>
