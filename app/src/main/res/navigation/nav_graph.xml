@@ -3,39 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentLogin2">
+    app:startDestination="@id/fragmentLogin">
 
     <fragment
-        android:id="@+id/fragmentLogin2"
+        android:id="@+id/fragmentLogin"
         android:name="com.example.api_project_aurelio.ui.FragmentLogin"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_fragmentLogin2_to_fragmentDetails2"
-            app:destination="@id/fragmentDetails2" />
+            android:id="@+id/action_fragmentLogin_to_fragmentDetails"
+            app:destination="@id/fragmentDetails" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentDashboard"
+            app:destination="@id/fragmentDashboard" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentDetails2"
+        android:id="@+id/fragmentDetails"
         android:name="com.example.api_project_aurelio.ui.FragmentDetails"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
-            android:id="@+id/action_fragmentDetails2_to_fragmentLogin2"
-            app:destination="@id/fragmentLogin2" />
+            android:id="@+id/action_fragmentDetails_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
         <action
-            android:id="@+id/action_fragmentDetails2_to_fragmentDashboard2"
-            app:destination="@id/fragmentDashboard2" />
+            android:id="@+id/action_fragmentDetails_to_fragmentDashboard"
+            app:destination="@id/fragmentDashboard" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentDashboard2"
+        android:id="@+id/fragmentDashboard"
         android:name="com.example.api_project_aurelio.dashboard.FragmentDashboard"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_fragmentDashboard2_to_fragmentDetails2"
-            app:destination="@id/fragmentDetails2" />
+            android:id="@+id/action_fragmentDashboard_to_fragmentDetails"
+            app:destination="@id/fragmentDetails" />
         <action
-            android:id="@+id/action_fragmentDashboard2_to_fragmentLogin2"
-            app:destination="@id/fragmentLogin2" />
+            android:id="@+id/action_fragmentDashboard_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
     </fragment>
 </navigation>
