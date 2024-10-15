@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    style="?attr/materialCardViewElevatedStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:backgroundTint="#FFC519">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/itemNametext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="#2B2F40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/itemIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="#2B2F40"
+            app:layout_constraintStart_toStartOf="@id/itemNametext"
+            app:layout_constraintTop_toBottomOf="@id/itemNametext"
+            tools:text="Artist: Leonardo Da Vinci" />
+
+        <TextView
+            android:id="@+id/itemYeartext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="#2B2F40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Year: 1503" />
+
+        <TextView
+            android:id="@+id/itemMediumtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="#2B2F40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemYeartext"
+            tools:text="Medium" />
+
+        <TextView
+            android:id="@+id/detailsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="More details are available"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="#2B2F40"
+            app:layout_constraintStart_toStartOf="@id/itemIdText"
+            app:layout_constraintTop_toBottomOf="@id/itemIdText"
+            tools:text="More details are available"
+            tools:ignore="HardcodedText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navigationButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#060A0B"
+            android:text="Show Data"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/detailsText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/detailsText"
+            tools:ignore="HardcodedText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
