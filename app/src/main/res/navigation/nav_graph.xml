@@ -22,5 +22,20 @@
         <action
             android:id="@+id/action_fragmentDetails2_to_fragmentLogin2"
             app:destination="@id/fragmentLogin2" />
+        <action
+            android:id="@+id/action_fragmentDetails2_to_fragmentDashboard2"
+            app:destination="@id/fragmentDashboard2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDashboard2"
+        android:name="com.example.api_project_aurelio.dashboard.FragmentDashboard"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_fragmentDashboard2_to_fragmentDetails2"
+            app:destination="@id/fragmentDetails2" />
+        <action
+            android:id="@+id/action_fragmentDashboard2_to_fragmentLogin2"
+            app:destination="@id/fragmentLogin2" />
     </fragment>
 </navigation>
