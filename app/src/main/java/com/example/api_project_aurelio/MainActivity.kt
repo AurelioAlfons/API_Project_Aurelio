@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-//    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -48,14 +48,14 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-//        // Show or hide BottomNavigationView based on the current fragment
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                R.id.fragmentLogin -> navbar.visibility = View.GONE
-//                R.id.fragmentDashboard, R.id.fragmentDetails -> navbar.visibility = View.VISIBLE
-//                else -> navbar.visibility = View.VISIBLE
-//            }
-//        }
+        // Show or hide BottomNavigationView based on the current fragment
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.fragmentLogin -> navbar.visibility = View.GONE
+                R.id.fragmentDashboard, R.id.fragmentDetails -> navbar.visibility = View.VISIBLE
+                else -> navbar.visibility = View.VISIBLE
+            }
+        }
 
         // Optionally handle window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
