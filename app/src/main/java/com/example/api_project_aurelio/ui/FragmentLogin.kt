@@ -32,7 +32,7 @@ class FragmentLogin : Fragment() {
         // Initialize views
         usernameEditText = view.findViewById(R.id.usernameInput)
         passwordEditText = view.findViewById(R.id.passwordInput)
-        errorTextView = view.findViewById(R.id.errorText)
+        errorTextView = view.findViewById(R.id.errorButton)
 
         // Handle edge-to-edge display adjustments
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
@@ -47,14 +47,24 @@ class FragmentLogin : Fragment() {
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
+            // If username or password Correct
+//            if (username == "Aurelio" || password == "s4672291") {
+//                errorTextView.visibility = View.GONE
+//                navigateToDashboard()
+            if (username == "a" || password == "a") {
+                errorTextView.visibility = View.GONE
+                navigateToDashboard()
+            }
             // If username or password field empty then make error message visible
-            if (username.isEmpty() || password.isEmpty()) {
+            else if (username.isEmpty() || password.isEmpty()) {
                 errorTextView.text = "Username and password cannot be empty"
                 errorTextView.visibility = View.VISIBLE
-            } else {
-                // If field is not empty then navigate to Dashboard
-                // We call the navigateToDashboard() function
-                navigateToDashboard()
+            }
+            // If username or password field wrong
+            else {
+                errorTextView.text = "Incorrect username or password"
+                errorTextView.visibility = View.VISIBLE
+
             }
         }
     }
