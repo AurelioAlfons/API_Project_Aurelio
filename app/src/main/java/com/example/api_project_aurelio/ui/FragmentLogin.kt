@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavOptions
@@ -17,6 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 //@AndroidEntryPoint
 class FragmentLogin : Fragment() {
 
+    private lateinit var usernameEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var errorTextView: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +32,11 @@ class FragmentLogin : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Initialize views
+//        usernameEditText = view.findViewById(R.id.username)
+//        passwordEditText = view.findViewById(R.id.password)
+//        errorTextView = view.findViewById(R.id.errorText)
 
         // Handle edge-to-edge display adjustments
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.fragmentLogin)) { v, insets ->
