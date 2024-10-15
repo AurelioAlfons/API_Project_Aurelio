@@ -10,7 +10,7 @@
 
     <!-- Email Field -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
+        android:id="@+id/username"
         android:layout_width="377dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -19,7 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="HardcodedText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -41,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/username"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="HardcodedText">
 
@@ -51,6 +52,23 @@
             android:inputType="textPassword"
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Error Message TextView -->
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Error Message"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewForgotPassword"
+        app:layout_constraintVertical_bias="0.141"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="0dp" />
 
     <!-- SIGN IN button -->
     <com.google.android.material.button.MaterialButton
@@ -116,10 +134,11 @@
         android:id="@+id/imageView"
         android:layout_width="245dp"
         android:layout_height="219dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
