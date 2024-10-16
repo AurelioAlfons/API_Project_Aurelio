@@ -1,5 +1,6 @@
 package com.example.api_project_aurelio.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class FragmentLogin : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
