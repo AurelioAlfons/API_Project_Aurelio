@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.api_project_aurelio.R
-import com.example.api_project_aurelio.network.ArtworkEntity
+import com.example.api_project_aurelio.data.ArtworkEntity
 
 class ArtAdapter : RecyclerView.Adapter<ArtAdapter.ArtworkViewHolder>() {
 

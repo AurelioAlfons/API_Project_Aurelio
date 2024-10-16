@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.qualifiers.ApplicationContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.api_project_aurelio.network.ArtworkEntity
+import com.example.api_project_aurelio.data.ArtworkEntity
 import com.example.api_project_aurelio.network.RestfulApiDevService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

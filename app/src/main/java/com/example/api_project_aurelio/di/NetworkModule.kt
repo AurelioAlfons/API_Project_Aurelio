@@ -1,7 +1,7 @@
 package com.example.api_project_aurelio.di
 
-//import com.example.api_project_aurelio.network.LoginRequest
-//import com.example.api_project_aurelio.network.LoginResponse
+//import com.example.api_project_aurelio.data.LoginRequest
+//import com.example.api_project_aurelio.data.LoginResponse
 import com.example.api_project_aurelio.network.RestfulApiDevRetrofitClient
 import com.example.api_project_aurelio.network.RestfulApiDevService
 import dagger.Module
