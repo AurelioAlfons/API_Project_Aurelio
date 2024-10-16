@@ -3,21 +3,27 @@ package com.example.api_project_aurelio.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.api_project_aurelio.di.NetworkModule
+import com.example.api_project_aurelio.network.LoginRequest
+import com.example.api_project_aurelio.network.RestfulApiDevService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
 // Purpose:
 // - Handles logic & communicate with API
 // - Handles the login logic (try, catch (e: Exception)
 // - Connect between the UI (FragmentLogin & API call)
-// - Get the API service from NetworkModule CLASS (Sets up Retrofit and DevService)
+// - Get the API service via Hilt Dependency Injection
 // - Error handling
 // - Also has Coroutines
 
 // CLASS: LoginViewModel
-class LoginViewModel(private val networkModule: NetworkModule) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val apiService: RestfulApiDevService   // Inject API service with Hilt
+) : ViewModel() {
 
     // Function to handle login
     // - Username & Password
@@ -26,11 +32,10 @@ class LoginViewModel(private val networkModule: NetworkModule) : ViewModel() {
     fun login(username: String, password: String, onSuccess: (String) -> Unit, onError: (String) -> Unit) {
         //
         // Launch coroutine in viewModelScope to handle background task
-        // Coroutines so UI thread won't be blocked while waiting for network response
         viewModelScope.launch {
             try {
-                // Use NetworkModel to call login
-                val loginResponse = networkModule.login(username, password)
+                // Use API service to call login
+                val loginResponse = apiService.login(LoginRequest(username, password))
 
                 Log.d("LoginViewModel", "Received keypass: ${loginResponse.keypass}")
 

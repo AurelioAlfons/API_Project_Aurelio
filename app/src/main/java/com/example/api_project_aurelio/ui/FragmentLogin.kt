@@ -10,23 +10,22 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.api_project_aurelio.R
-import com.example.api_project_aurelio.di.NetworkModule
-import com.example.api_project_aurelio.model_factory.LoginViewModelFactory
 import com.example.api_project_aurelio.viewmodel.LoginViewModel
-import com.example.api_project_aurelio.network.RestfulApiDevRetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 // Purpose:
 // - Handles the login UI
 // - Connects with LoginViewModel
-// - Handles navigation sign in button
+// - Handles navigation sign-in button
 
+@AndroidEntryPoint  // Enable Hilt injection
 class FragmentLogin : Fragment() {
 
     // Initialized var
@@ -34,7 +33,8 @@ class FragmentLogin : Fragment() {
     private lateinit var passwordEditText: EditText
     private lateinit var errorTextView: TextView
 
-    private lateinit var loginViewModel: LoginViewModel
+    // Use Hilt's ViewModel injection
+    private val loginViewModel: LoginViewModel by viewModels()
 
     // Layout: fragment_login
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -55,11 +55,6 @@ class FragmentLogin : Fragment() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // Initialize the ViewModel with the NetworkModule
-        val networkModule = NetworkModule(RestfulApiDevRetrofitClient.apiService)
-        val factory = LoginViewModelFactory(networkModule)
-        loginViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
 
         // Sign in button OnClickListener
         view.findViewById<Button>(R.id.SignIn).setOnClickListener {

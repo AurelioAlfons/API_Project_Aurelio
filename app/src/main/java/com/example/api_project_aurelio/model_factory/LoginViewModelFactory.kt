@@ -11,11 +11,11 @@ import com.example.api_project_aurelio.viewmodel.LoginViewModel
 // - Will change
 
 // CLASS: LoginViewModelFactory
-class LoginViewModelFactory(private val networkModule: NetworkModule) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(networkModule) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+//class LoginViewModelFactory(private val networkModule: NetworkModule) : ViewModelProvider.Factory {
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+//            return LoginViewModel(networkModule) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
+//}

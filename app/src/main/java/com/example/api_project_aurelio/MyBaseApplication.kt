@@ -4,6 +4,10 @@ import android.app.Application
 import android.util.Log
 import dagger.hilt.android.HiltAndroidApp
 
+// Base application for Hilt
+// - Initialized Hilt dependencies
+// - @HiltAndroidApp -> Entry point for dependency injection
+
 @HiltAndroidApp
 class MyBaseApplication: Application() {
 

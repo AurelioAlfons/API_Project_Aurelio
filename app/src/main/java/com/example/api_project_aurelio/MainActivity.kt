@@ -13,7 +13,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+// Add this to ensure the app runs with DI
+// We need to add this to every activity or fragment that use Dependency Injection
+// So confusing
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("MissingInflatedId")
