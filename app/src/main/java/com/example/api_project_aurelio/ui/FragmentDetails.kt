@@ -1,30 +1,41 @@
 package com.example.api_project_aurelio.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.api_project_aurelio.R
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 @AndroidEntryPoint
 class FragmentDetails : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var artworkTitle: String? = null
+    private var artist: String? = null
+    private var medium: String? = null
+    private var year: Int? = null
+    private var description: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        // Retrieve the arguments passed from the previous fragment
+//        arguments?.let {
+//            val args = FragmentDetailsArgs.fromBundle(it)
+//            artworkTitle = args.title
+//            artist = args.artist
+//            medium = args.medium
+//            year = args.year
+//            description = args.description
+//        }
+//        arguments?.let { bundle ->
+//            artworkTitle = bundle.getString("title")
+//            artist = bundle.getString("artist")
+//            medium = bundle.getString("medium")
+//            year = bundle.getInt("year") // Retrieve the integer
+//            description = bundle.getString("description")
+//        }
     }
 
     override fun onCreateView(
@@ -35,5 +46,14 @@ class FragmentDetails : Fragment() {
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
-    companion object
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Set data to the MaterialCardView elements
+//        view.findViewById<TextView>(R.id.cardTitle).text = artworkTitle
+//        view.findViewById<TextView>(R.id.cardName).text = artist
+//        view.findViewById<TextView>(R.id.cardMedium).text = medium
+//        view.findViewById<TextView>(R.id.cardYear).text = year.toString()
+//        view.findViewById<TextView>(R.id.cardDescription).text = description
+    }
 }

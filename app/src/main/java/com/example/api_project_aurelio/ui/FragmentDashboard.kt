@@ -47,14 +47,24 @@ class FragmentDashboard : Fragment() {
             // Navigate to the details fragment using the artwork data
 //            findNavController().navigate(FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(detail = artwork.artworkTitle))
 
-            val action = FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(
-                title = artwork.artworkTitle,
-                artist = artwork.artist,
-                year = artwork.year.toString(),
-                description = artwork.description
-            )
+//            val action = FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(
+//                title = artwork.artworkTitle,
+//                artist = artwork.artist,
+//                medium = artwork.medium,
+//                year = artwork.year,
+//                description = artwork.description
+//            )
 
-            findNavController().navigate(action)
+            val bundle = Bundle().apply {
+                putString("title", artwork.artworkTitle)
+                putString("artist", artwork.artist)
+                putString("medium", artwork.medium)
+                putInt("year", artwork.year) // Use putInt for integers
+                putString("description", artwork.description)
+            }
+
+//            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_fragmentDashboard_to_fragmentDetails, bundle)
 
             // Update the bottom navigation selectedId to FragmentDetails
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.Navigation_details
