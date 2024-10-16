@@ -38,8 +38,17 @@
             android:id="@+id/action_fragmentDashboard_to_fragmentDetails"
             app:destination="@id/fragmentDetails">
             <argument
-                android:name="detail"
-                app:argType="string"/>
+                android:name="title"
+                app:argType="string" />
+            <argument
+                android:name="artist"
+                app:argType="string" />
+            <argument
+                android:name="year"
+                app:argType="string" />
+            <argument
+                android:name="description"
+                app:argType="string" />
         </action>
         <action
             android:id="@+id/action_fragmentDashboard_to_fragmentLogin"

@@ -45,7 +45,16 @@ class FragmentDashboard : Fragment() {
         // Define the navigation function lambda
         val navigationFunctionLambda: (ArtworkEntity) -> Unit = { artwork ->
             // Navigate to the details fragment using the artwork data
-            findNavController().navigate(FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(detail = artwork.artworkTitle))
+//            findNavController().navigate(FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(detail = artwork.artworkTitle))
+
+            val action = FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(
+                title = artwork.artworkTitle,
+                artist = artwork.artist,
+                year = artwork.year.toString(),
+                description = artwork.description
+            )
+
+            findNavController().navigate(action)
 
             // Update the bottom navigation selectedId to FragmentDetails
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.Navigation_details

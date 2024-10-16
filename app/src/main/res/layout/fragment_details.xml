@@ -21,12 +21,13 @@
 
             <!-- Media -->
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 app:srcCompat="@drawable/login"
                 android:scaleType="centerCrop"
                 android:contentDescription="Media"
-                />
+                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,27 +37,32 @@
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/cardTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    />
+                    tools:ignore="HardcodedText" />
+
                 <TextView
+                    android:id="@+id/cardName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Title"
+                    android:text="Artist"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary"
-                    />
+                    tools:ignore="HardcodedText" />
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/cardDescription"
+                    android:layout_width="367dp"
+                    android:layout_height="81dp"
                     android:layout_marginTop="16dp"
-                    android:text="Title"
+                    android:text="Description"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary"
-                    />
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
@@ -67,18 +73,21 @@
                 android:layout_margin="8dp"
                 android:orientation="horizontal">
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cardYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Title"
+                    android:text="Year"
                     style="?attr/borderlessButtonStyle"
-                    />
+                    tools:ignore="HardcodedText" />
+
                 <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:id="@+id/cardMedium"
                     style="?attr/borderlessButtonStyle"
-                    />
+                    android:layout_width="283dp"
+                    android:layout_height="70dp"
+                    android:text="Medium"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
         </LinearLayout>
