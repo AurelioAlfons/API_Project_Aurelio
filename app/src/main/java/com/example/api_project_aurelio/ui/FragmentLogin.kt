@@ -10,20 +10,25 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.api_project_aurelio.R
-import com.example.api_project_aurelio.network.LoginRequest
+import com.example.api_project_aurelio.di.NetworkModule
+import com.example.api_project_aurelio.model_factory.LoginViewModelFactory
+import com.example.api_project_aurelio.viewmodel.LoginViewModel
+import com.example.api_project_aurelio.network.RestfulApiDevRetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
 class FragmentLogin : Fragment() {
 
-    // Value of the var is still empty
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var errorTextView: TextView
+
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
@@ -43,78 +48,34 @@ class FragmentLogin : Fragment() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //
-        // Login Validation Starts here (With Post method)
-//        // Sign in button OnClickListener
-//        view.findViewById<Button>(R.id.SignIn).setOnClickListener {
-//            // Trim = remove spaces
-//            val username = usernameEditText.text.toString().trim()
-//            val password = passwordEditText.text.toString().trim()
-//
-//            // If username or password field empty then make error message visible
-//            if (username.isEmpty() || password.isEmpty()) {
-//                errorTextView.text = "Username and password cannot be empty"
-//                errorTextView.visibility = View.VISIBLE
-//            } else {
-//                // Call the login API
-//                lifecycleScope.launch {
-//                    try {
-//                        // Create login request object
-//                        val loginRequest = LoginRequest(username = username, password = password)
-//
-//                        // Call login API using Retrofit service
-//                        val loginResponse = ApiClient.restfulApiDevService.login(loginRequest)
-//
-//                        // If login is successful (assuming you check for keypass or a success flag in the response)
-//                        if (loginResponse.keypass.isNotEmpty()) {
-//                            errorTextView.visibility = View.GONE
-//                            // Save keypass if needed and navigate to dashboard
-//                            navigateToDashboard()  // Navigate to dashboard
-//                        } else {
-//                            // Show error message for incorrect credentials
-//                            errorTextView.text = "Incorrect username or password"
-//                            errorTextView.visibility = View.VISIBLE
-//                        }
-//                    } catch (e: Exception) {
-//                        // Handle network or API errors (e.g., connection failure)
-//                        errorTextView.text = "Login failed: ${e.message}"
-//                        errorTextView.visibility = View.VISIBLE
-//                    }
-//                }
-//            }
-//        }
-        // Login Validation ends here (POST)
 
-        //
-        //Sign in button OnClickListener
-        // Login Validation Starts here (Without Post Method),(Declaring the username and password inside)
+        // Initialize the ViewModel with the NetworkModule
+        val networkModule = NetworkModule(RestfulApiDevRetrofitClient.apiService)
+        val factory = LoginViewModelFactory(networkModule)
+        loginViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
+
+        // Sign in button OnClickListener
         view.findViewById<Button>(R.id.SignIn).setOnClickListener {
-            // Trim = remove spaces
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
-            // If username or password Correct
-//            if (username == "Aurelio" || password == "s4672291") {
-//                errorTextView.visibility = View.GONE
-//                navigateToDashboard()
-            // Just for testing make it shorter
-            if (username == "a" || password == "a") {
-                errorTextView.visibility = View.GONE
-                navigateToDashboard()
-            }
-            // If username or password field empty then make error message visible
-            else if (username.isEmpty() || password.isEmpty()) {
+            // If username or password field is empty, show error
+            if (username.isEmpty() || password.isEmpty()) {
                 errorTextView.text = "Username and password cannot be empty"
                 errorTextView.visibility = View.VISIBLE
-            }
-            // If username or password field wrong
-            else {
-                errorTextView.text = "Incorrect username or password"
-                errorTextView.visibility = View.VISIBLE
+            } else {
+                // Call the login function in ViewModel
+                lifecycleScope.launch {
+                    loginViewModel.login(username, password, onSuccess = { keypass ->
+                        errorTextView.visibility = View.GONE
+                        navigateToDashboard()  // Navigate to the dashboard if login is successful
+                    }, onError = { errorMessage ->
+                        errorTextView.text = "Login failed: $errorMessage"
+                        errorTextView.visibility = View.VISIBLE
+                    })
+                }
             }
         }
-        // Login Validation Ends here (No POST)
-        //
     }
 
     // Function to navigate to Dashboard

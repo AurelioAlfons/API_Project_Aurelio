@@ -59,21 +59,21 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/errorButton"
         style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="375dp"
-        android:layout_height="56dp"
+        android:layout_width="376dp"
+        android:layout_height="76dp"
         android:backgroundTint="@android:color/transparent"
         android:padding="10dp"
-        android:visibility="gone"
         android:text="Invalid username or password"
         android:textColor="@android:color/holo_red_dark"
         app:cornerRadius="1dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewForgotPassword"
         app:layout_constraintVertical_bias="0.141"
-        app:strokeColor="@android:color/holo_red_dark"
         app:rippleColor="#FF0000"
+        app:strokeColor="@android:color/holo_red_dark"
         app:strokeWidth="4dp" />
 
 
