@@ -36,32 +36,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="100dp"
+        android:paddingBottom="500dp"
+        android:clipToPadding="false"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/Tab"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/item_layout_restful_api_dev" />
-
-    <!-- Error Message TextView -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/emptyDashboard"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="376dp"
-        android:layout_height="76dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="10dp"
-        android:text="Empty Dashboard"
-        android:textColor="@android:color/holo_red_dark"
-        android:visibility="gone"
-        app:cornerRadius="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Tab"
-        app:layout_constraintVertical_bias="0.879"
-        app:rippleColor="#FF0000"
-        app:strokeColor="@android:color/holo_red_dark"
-        app:strokeWidth="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

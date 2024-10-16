@@ -1,31 +1,28 @@
 package com.example.api_project_aurelio.viewmodel
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import dagger.hilt.android.qualifiers.ApplicationContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.api_project_aurelio.data.ArtworkEntity
 import com.example.api_project_aurelio.network.RestfulApiDevService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val apiService: RestfulApiDevService,
-    @ApplicationContext private val appContext: Context   // Inject the application context
+    @ApplicationContext private val appContext: Context // Inject the application context
 ) : ViewModel() {
 
-    // MutableLiveData to hold artwork entities
-    private val _artworkEntities = MutableLiveData<List<ArtworkEntity>>()
-    val artworkEntities: LiveData<List<ArtworkEntity>> = _artworkEntities
+    // MutableStateFlow to hold artwork entities
+    private val _artworkEntities = MutableStateFlow<List<ArtworkEntity>>(emptyList())
+    val artworkEntities: StateFlow<List<ArtworkEntity>> = _artworkEntities
 
-    // MutableLiveData to handle error messages
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
-
+    // Fetch artwork data from API
     fun fetchArtworks() {
         viewModelScope.launch {
             try {
@@ -34,14 +31,11 @@ class DashboardViewModel @Inject constructor(
 
                 if (!keypass.isNullOrEmpty()) {
                     val apiResponse = apiService.getArt(keypass)
-                    _artworkEntities.postValue(apiResponse.entities)
-                } else {
-                    _errorMessage.postValue("Keypass is missing.")
+                    _artworkEntities.value = apiResponse.entities
                 }
             } catch (e: Exception) {
-                _errorMessage.postValue(e.message ?: "An error occurred")
+                // Handle errors here if needed
             }
         }
     }
 }
-
