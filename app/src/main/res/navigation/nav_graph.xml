@@ -36,7 +36,11 @@
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_fragmentDashboard_to_fragmentDetails"
-            app:destination="@id/fragmentDetails" />
+            app:destination="@id/fragmentDetails">
+            <argument
+                android:name="detail"
+                app:argType="string"/>
+        </action>
         <action
             android:id="@+id/action_fragmentDashboard_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />

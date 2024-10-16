@@ -9,10 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.api_project_aurelio.R
 import com.example.api_project_aurelio.adapter.ArtAdapter
+import com.example.api_project_aurelio.data.ArtworkEntity
 import com.example.api_project_aurelio.viewmodel.DashboardViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,9 +42,18 @@ class FragmentDashboard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Define the navigation function lambda
+        val navigationFunctionLambda: (ArtworkEntity) -> Unit = { artwork ->
+            // Navigate to the details fragment using the artwork data
+            findNavController().navigate(FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(detail = artwork.artworkTitle))
+
+            // Update the bottom navigation selectedId to FragmentDetails
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.Navigation_details
+        }
+
         // Initialize views
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        artAdapter = ArtAdapter()
+        artAdapter = ArtAdapter(navigationFunction = navigationFunctionLambda)
         recyclerView.adapter = artAdapter
 
         // Collect the artworkEntities flow and update RecyclerView
