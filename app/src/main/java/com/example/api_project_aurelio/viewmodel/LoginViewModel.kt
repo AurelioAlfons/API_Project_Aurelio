@@ -1,11 +1,13 @@
 package com.example.api_project_aurelio.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.api_project_aurelio.network.LoginRequest
 import com.example.api_project_aurelio.network.RestfulApiDevService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -21,9 +23,14 @@ import javax.inject.Inject
 
 // CLASS: LoginViewModel
 @HiltViewModel
+// Inject API service with Hilt
 class LoginViewModel @Inject constructor(
-    private val apiService: RestfulApiDevService   // Inject API service with Hilt
+    private val apiService: RestfulApiDevService,
+    @ApplicationContext private val appContext: Context
 ) : ViewModel() {
+
+//    // Var to store the keypass: String?
+//    var keypass: String? = null
 
     // Function to handle login
     // - Username & Password
@@ -36,6 +43,11 @@ class LoginViewModel @Inject constructor(
             try {
                 // Use API service to call login
                 val loginResponse = apiService.login(LoginRequest(username, password))
+                val keypass = loginResponse.keypass
+
+                // Save keypass in SharedPreferences
+                val sharedPreferences = appContext.getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE)
+                sharedPreferences.edit().putString("keypass", keypass).apply()
 
                 Log.d("LoginViewModel", "Received keypass: ${loginResponse.keypass}")
 

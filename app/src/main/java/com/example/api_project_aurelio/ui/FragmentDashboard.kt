@@ -1,36 +1,53 @@
 package com.example.api_project_aurelio.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.example.api_project_aurelio.R
+import com.example.api_project_aurelio.viewmodel.DashboardViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-
+@AndroidEntryPoint
 class FragmentDashboard : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var emptyDashboardButton: Button
+    private val dashboardViewModel: DashboardViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
-    companion object
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Initialize views
+        recyclerView = view.findViewById(R.id.recyclerView)
+        emptyDashboardButton = view.findViewById(R.id.emptyDashboard)
+
+        // Observe the artworkEntities LiveData
+        dashboardViewModel.artworkEntities.observe(viewLifecycleOwner, Observer { entities ->
+            if (entities.isNullOrEmpty()) {
+                // Show the empty button if no data
+                emptyDashboardButton.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                // Show RecyclerView if data exists
+                emptyDashboardButton.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        })
+
+        // Fetch data
+        dashboardViewModel.fetchArtworks()
+    }
 }

@@ -76,7 +76,6 @@
         app:strokeColor="@android:color/holo_red_dark"
         app:strokeWidth="4dp" />
 
-
     <!-- SIGN IN button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/SignIn"
