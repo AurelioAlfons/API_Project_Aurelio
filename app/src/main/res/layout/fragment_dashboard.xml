@@ -5,7 +5,7 @@
     android:id="@+id/fragmentDashboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dashboard.FragmentDashboard">
+    tools:context=".ui.FragmentDashboard">
 
     <!-- Tap Layout -->
     <com.google.android.material.tabs.TabLayout

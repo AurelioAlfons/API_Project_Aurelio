@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentDashboard"
-        android:name="com.example.api_project_aurelio.dashboard.FragmentDashboard"
+        android:name="com.example.api_project_aurelio.ui.FragmentDashboard"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action

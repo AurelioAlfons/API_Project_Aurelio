@@ -1,4 +1,4 @@
-package com.example.api_project_aurelio.dashboard
+package com.example.api_project_aurelio.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
