@@ -25,7 +25,7 @@ data class LoginRequest(
 )
 
 data class LoginResponse(
-    val keypass: String // Modify this based on your actual response structure
+    val keypass: String
 )
 
 // Artwork data response classes

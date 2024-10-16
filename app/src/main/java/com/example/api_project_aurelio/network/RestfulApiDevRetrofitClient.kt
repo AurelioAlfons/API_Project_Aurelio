@@ -14,10 +14,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 // - Provides API service for interacting with the backend
 
 // Creates Retrofit client for API
-class RestfulApiDevRetrofitClient {
+object RestfulApiDevRetrofitClient {
 
     // Base URL for the API
-    private val BASE_URL = "https://nit3213-api-h2b3-latest.onrender.com/"
+    private const val BASE_URL = "https://nit3213-api-h2b3-latest.onrender.com/"
 
     // Logging interceptor to debug requests/responses
     private val logging = HttpLoggingInterceptor().apply {
@@ -41,6 +41,7 @@ class RestfulApiDevRetrofitClient {
         .client(client)
         .build()
 
+    // Not called yet
     // API service for making requests
     val apiService: RestfulApiDevService = retrofit.create(RestfulApiDevService::class.java)
 }
