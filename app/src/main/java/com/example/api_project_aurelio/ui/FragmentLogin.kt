@@ -22,14 +22,21 @@ import com.example.api_project_aurelio.network.RestfulApiDevRetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
+// Purpose:
+// - Handles the login UI
+// - Connects with LoginViewModel
+// - Handles navigation sign in button
+
 class FragmentLogin : Fragment() {
 
+    // Initialized var
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var errorTextView: TextView
 
     private lateinit var loginViewModel: LoginViewModel
 
+    // Layout: fragment_login
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
@@ -66,10 +73,13 @@ class FragmentLogin : Fragment() {
             } else {
                 // Call the login function in ViewModel
                 lifecycleScope.launch {
+                    // Successful condition
                     loginViewModel.login(username, password, onSuccess = { keypass ->
                         errorTextView.visibility = View.GONE
-                        navigateToDashboard()  // Navigate to the dashboard if login is successful
+                        // Navigate to the dashboard if login is successful
+                        navigateToDashboard()
                     }, onError = { errorMessage ->
+                        // Error condition
                         errorTextView.text = "Login failed: $errorMessage"
                         errorTextView.visibility = View.VISIBLE
                     })

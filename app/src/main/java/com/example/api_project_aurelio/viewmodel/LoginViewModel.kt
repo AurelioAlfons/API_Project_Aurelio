@@ -8,11 +8,25 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
+// Purpose:
+// - Handles logic & communicate with API
+// - Handles the login logic (try, catch (e: Exception)
+// - Connect between the UI (FragmentLogin & API call)
+// - Get the API service from NetworkModule CLASS (Sets up Retrofit and DevService)
+// - Error handling
+// - Also has Coroutines
+
+// CLASS: LoginViewModel
 class LoginViewModel(private val networkModule: NetworkModule) : ViewModel() {
 
     // Function to handle login
+    // - Username & Password
+    // - onSuccess -> Indicates the condition for login successful
+    // - Unit -> Return type but not return a value
     fun login(username: String, password: String, onSuccess: (String) -> Unit, onError: (String) -> Unit) {
+        //
         // Launch coroutine in viewModelScope to handle background task
+        // Coroutines so UI thread won't be blocked while waiting for network response
         viewModelScope.launch {
             try {
                 // Use NetworkModel to call login
@@ -24,7 +38,7 @@ class LoginViewModel(private val networkModule: NetworkModule) : ViewModel() {
                 onSuccess(loginResponse.keypass)
 
             } catch (e: HttpException) {
-                // Handle HTTP exceptions (non-2xx status codes)
+                // Handle HTTP exceptions
                 Log.e("LoginViewModel", "Login failed: ${e.message}")
                 onError("Login failed: ${e.message}")
             } catch (e: IOException) {

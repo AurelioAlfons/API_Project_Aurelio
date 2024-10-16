@@ -41,7 +41,6 @@ object RestfulApiDevRetrofitClient {
         .client(client)
         .build()
 
-    // Not called yet
     // API service for making requests
     val apiService: RestfulApiDevService = retrofit.create(RestfulApiDevService::class.java)
 }
