@@ -1,10 +1,15 @@
 package com.example.api_project_aurelio.recyclerview
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.api_project_aurelio.R
 import com.example.api_project_aurelio.data.ArtworkEntity
+
+// Purpose:
+// - Holds references to the views for each RecyclerView item
+// - Binds artwork data to these views
 
 // ViewHolder class to hold references to views for each item
 class ArtworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -14,10 +19,11 @@ class ArtworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val medium: TextView = view.findViewById(R.id.medium)
 
     // Bind the data to the views
+    @SuppressLint("SetTextI18n")
     fun bind(artwork: ArtworkEntity) {
         title.text = artwork.artworkTitle
         artist.text = artwork.artist
-        year.text = artwork.year.toString()
+        year.text = "Year: ${artwork.year}"
         medium.text = artwork.medium
     }
 }

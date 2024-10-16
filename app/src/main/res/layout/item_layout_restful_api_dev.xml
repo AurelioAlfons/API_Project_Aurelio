@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="158dp"
         android:layout_marginBottom="16dp">
 
         <TextView
@@ -55,14 +55,19 @@
 
         <TextView
             android:id="@+id/medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="125dp"
+            android:layout_height="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text=""
+            android:textAlignment="viewEnd"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="#2B2F40"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/year"
             tools:text="Medium" />
 
@@ -70,14 +75,14 @@
             android:id="@+id/details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="56dp"
             android:text="More details are available"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="#2B2F40"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@id/name"
-            tools:text="More details are available"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            tools:text="More details are available" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/goToDetails"
@@ -85,10 +90,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:cornerRadius="8dp"
             android:backgroundTint="#060A0B"
             android:text="Show Data"
             android:textColor="@color/white"
+            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="@id/details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/details"

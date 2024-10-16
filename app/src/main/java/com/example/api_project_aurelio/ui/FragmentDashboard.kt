@@ -16,6 +16,11 @@ import com.example.api_project_aurelio.viewmodel.DashboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+// Purpose:
+// - Dashboard fragment to display a list of artworks using a RecyclerView
+// - Uses a ViewModel to fetch and observe the list of artworks
+// - Binds the artwork data to the RecyclerView using ArtAdapter
+
 @AndroidEntryPoint
 class FragmentDashboard : Fragment() {
 

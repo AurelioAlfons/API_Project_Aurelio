@@ -12,6 +12,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// Purpose:
+// - Handles business logic for the Dashboard
+// - Fetches artwork data using the API and stores it in a MutableStateFlow
+// - Uses Hilt for dependency injection
+
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val apiService: RestfulApiDevService,

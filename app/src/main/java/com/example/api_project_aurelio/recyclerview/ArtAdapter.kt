@@ -8,6 +8,11 @@ import com.example.api_project_aurelio.R
 import com.example.api_project_aurelio.data.ArtworkEntity
 import com.example.api_project_aurelio.recyclerview.ArtworkViewHolder
 
+
+// Purpose:
+// - Adapter to handle the display of artwork data in a RecyclerView
+// - Responsible for creating ViewHolder instances and binding data to the RecyclerView
+
 // Adapter class to manage the artwork data
 class ArtAdapter(private var artworkList: List<ArtworkEntity> = emptyList()) :
     RecyclerView.Adapter<ArtworkViewHolder>() {
@@ -19,8 +24,10 @@ class ArtAdapter(private var artworkList: List<ArtworkEntity> = emptyList()) :
     }
 
     override fun onBindViewHolder(holder: ArtworkViewHolder, position: Int) {
+        // Fetch the art item index
         val artwork = artworkList[position]
-        holder.bind(artwork) // Call bind to set the item data
+        // Call bind to set the item data
+        holder.bind(artwork)
     }
 
     override fun getItemCount(): Int {
