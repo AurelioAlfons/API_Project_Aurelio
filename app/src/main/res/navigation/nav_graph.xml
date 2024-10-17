@@ -24,6 +24,24 @@
         android:name="com.example.api_project_aurelio.ui.FragmentDetails"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details">
+
+        <!-- Arguments for fragmentDetails should be declared here -->
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="artist"
+            app:argType="string" />
+        <argument
+            android:name="medium"
+            app:argType="string" />
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_fragmentDetails_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />
@@ -38,25 +56,11 @@
         android:name="com.example.api_project_aurelio.ui.FragmentDashboard"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard">
+
+        <!-- Navigation actions -->
         <action
             android:id="@+id/action_fragmentDashboard_to_fragmentDetails"
-            app:destination="@id/fragmentDetails">
-            <argument
-                android:name="title"
-                app:argType="string" />
-            <argument
-                android:name="artist"
-                app:argType="string" />
-            <argument
-                android:name="medium"
-                app:argType="string" />
-            <argument
-                android:name="year"
-                app:argType="integer" />
-            <argument
-                android:name="description"
-                app:argType="string" />
-        </action>
+            app:destination="@id/fragmentDetails" />
         <action
             android:id="@+id/action_fragmentDashboard_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />

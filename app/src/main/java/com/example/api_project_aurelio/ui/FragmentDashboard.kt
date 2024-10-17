@@ -15,7 +15,6 @@ import com.example.api_project_aurelio.R
 import com.example.api_project_aurelio.adapter.ArtAdapter
 import com.example.api_project_aurelio.data.ArtworkEntity
 import com.example.api_project_aurelio.viewmodel.DashboardViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,7 +28,6 @@ class FragmentDashboard : Fragment() {
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var artAdapter: ArtAdapter
-//    private lateinit var emptyDashboardButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,32 +40,17 @@ class FragmentDashboard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Define the navigation function lambda
+        // Define the navigation function lambda using safeArgs
         val navigationFunctionLambda: (ArtworkEntity) -> Unit = { artwork ->
-            // Navigate to the details fragment using the artwork data
-//            findNavController().navigate(FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(detail = artwork.artworkTitle))
-
-//            val action = FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(
-//                title = artwork.artworkTitle,
-//                artist = artwork.artist,
-//                medium = artwork.medium,
-//                year = artwork.year,
-//                description = artwork.description
-//            )
-
-            val bundle = Bundle().apply {
-                putString("title", artwork.artworkTitle)
-                putString("artist", artwork.artist)
-                putString("medium", artwork.medium)
-                putInt("year", artwork.year) // Use putInt for integers
-                putString("description", artwork.description)
-            }
-
-//            findNavController().navigate(action)
-            findNavController().navigate(R.id.action_fragmentDashboard_to_fragmentDetails, bundle)
-
-            // Update the bottom navigation selectedId to FragmentDetails
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.Navigation_details
+            // Use safeArgs to navigate to details fragment, passing the artwork data
+            val action = FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(
+                title = artwork.artworkTitle,
+                artist = artwork.artist,
+                medium = artwork.medium,
+                year = artwork.year,
+                description = artwork.description
+            )
+            findNavController().navigate(action)
         }
 
         // Initialize views
@@ -88,3 +71,4 @@ class FragmentDashboard : Fragment() {
         dashboardViewModel.fetchArtworks()
     }
 }
+
