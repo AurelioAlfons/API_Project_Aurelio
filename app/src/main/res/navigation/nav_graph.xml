@@ -56,8 +56,6 @@
         android:name="com.example.api_project_aurelio.ui.FragmentDashboard"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard">
-
-        <!-- Navigation actions -->
         <action
             android:id="@+id/action_fragmentDashboard_to_fragmentDetails"
             app:destination="@id/fragmentDetails" />

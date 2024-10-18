@@ -9,7 +9,6 @@ import com.example.api_project_aurelio.R
 import com.example.api_project_aurelio.data.ArtworkEntity
 import com.example.api_project_aurelio.recyclerview.ArtworkViewHolder
 
-
 // Purpose:
 // - Adapter to handle the display of artwork data in a RecyclerView
 // - Responsible for creating ViewHolder instances and binding data to the RecyclerView

@@ -9,11 +9,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.api_project_aurelio.R
+import dagger.hilt.android.AndroidEntryPoint
 
+// Purpose:
+// - Take data from dashboard recyclerview and list it inside material card
+
+@AndroidEntryPoint
 class FragmentDetails : Fragment() {
 
     private val args: FragmentDetailsArgs by navArgs()
 
+    // Use the fragment_details xml
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,17 +27,16 @@ class FragmentDetails : Fragment() {
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
+    // Logic
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set the argument data to the TextView
-        view.findViewById<TextView>(R.id.passedData).text = """
-            Title: ${args.title}
-            Artist: ${args.artist}
-            Medium: ${args.medium}
-            Year: ${args.year}
-            Description: ${args.description}
-        """.trimIndent()
+        // Pass data into material card elements
+        view.findViewById<TextView>(R.id.cardTitle).text = args.title
+        view.findViewById<TextView>(R.id.cardName).text = args.artist
+        view.findViewById<TextView>(R.id.cardMedium).text = args.medium
+        view.findViewById<TextView>(R.id.cardYear).text = args.year.toString()
+        view.findViewById<TextView>(R.id.cardDescription).text = args.description
     }
 }

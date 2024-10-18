@@ -29,6 +29,7 @@ class FragmentDashboard : Fragment() {
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var artAdapter: ArtAdapter
 
+    // Use the fragment_dashboard xml
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +38,7 @@ class FragmentDashboard : Fragment() {
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
+    // All the logic happen here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
