@@ -11,6 +11,15 @@ android {
     namespace = "com.example.api_project_aurelio"
     compileSdk = 34
 
+    packagingOptions {
+        // Exclude duplicate META-INF/LICENSE.md files
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/NOTICE.md")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/LICENSE-notice.md")
+    }
+
     defaultConfig {
         applicationId = "com.example.api_project_aurelio"
         minSdk = 24
@@ -73,10 +82,12 @@ dependencies {
     testImplementation("io.mockk:mockk-agent-jvm:1.13.12")
     // JUnit for local unit tests
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.9")
     // Instrumented tests dependencies (run on an Android device or emulator)
     androidTestImplementation("io.mockk:mockk-android:1.13.12")
     androidTestImplementation("io.mockk:mockk-agent:1.13.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 }
 kapt {
     correctErrorTypes = true
