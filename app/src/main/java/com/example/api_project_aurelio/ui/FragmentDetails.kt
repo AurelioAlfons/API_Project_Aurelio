@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.api_project_aurelio.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,5 +40,11 @@ class FragmentDetails : Fragment() {
         view.findViewById<TextView>(R.id.cardMedium).text = args.medium
         view.findViewById<TextView>(R.id.cardYear).text = args.year.toString()
         view.findViewById<TextView>(R.id.cardDescription).text = args.description
+
+        val backButton = view.findViewById<Button>(R.id.back)
+        backButton.setOnClickListener {
+            // Navigate back to the dashboard fragment
+            findNavController().navigate(R.id.action_fragmentDetails_to_fragmentDashboard)
+        }
     }
 }
