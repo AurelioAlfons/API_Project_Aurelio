@@ -21,46 +21,58 @@ import javax.inject.Inject
 // - Error handling
 // - Also has Coroutines
 
-// CLASS: LoginViewModel
+// Let Hilt know that this file will be Injected with dependencies
 @HiltViewModel
-// Inject API service with Hilt
-class LoginViewModel @Inject constructor(
-    private val apiService: RestfulApiDevService,
-    @ApplicationContext private val appContext: Context
-) : ViewModel() {
 
-//    // Var to store the keypass: String?
-//    var keypass: String? = null
+// CLASS: LoginViewModel - DEPENDENCY INJECTION
+class LoginViewModel @Inject constructor(
+
+    // DEPENDENCY INJECTIONS:
+
+    // - apiService: Injected for API calls <-- NetworkModule
+    private val apiService: RestfulApiDevService,
+
+    // - appContext: Injected for accessing shared preferences <-- Built in
+    @ApplicationContext private val appContext: Context
+
+) : ViewModel() {
 
     // Function to handle login
     // - Username & Password
     // - onSuccess -> Indicates the condition for login successful
     // - Unit -> Return type but not return a value
     fun login(username: String, password: String, onSuccess: (String) -> Unit, onError: (String) -> Unit) {
-        //
+
         // Launch coroutine in viewModelScope to handle background task
         viewModelScope.launch {
+
             try {
                 // Use API service to call login
                 val loginResponse = apiService.login(LoginRequest(username, password))
                 val keypass = loginResponse.keypass
 
                 // Save keypass in SharedPreferences
+                // APP_PREFS -> storage for data
+                // Context.MODE_PRIVATE -> Ensures only this app can access
                 val sharedPreferences = appContext.getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE)
                 sharedPreferences.edit().putString("keypass", keypass).apply()
 
+                // Check on logCat
                 Log.d("LoginViewModel", "Received keypass: ${loginResponse.keypass}")
 
                 // If successful, pass the keypass to the onSuccess callback
                 onSuccess(loginResponse.keypass)
 
-            } catch (e: HttpException) {
+            } // Error handling
+            catch (e: HttpException) {
                 // Handle HTTP exceptions
                 Log.e("LoginViewModel", "Login failed: ${e.message}")
                 onError("Login failed: ${e.message}")
+
             } catch (e: IOException) {
                 // Handle network or conversion issues
                 onError("Network error: ${e.message}")
+
             } catch (e: Exception) {
                 // Handle any other exception
                 onError("An error occurred: ${e.message}")

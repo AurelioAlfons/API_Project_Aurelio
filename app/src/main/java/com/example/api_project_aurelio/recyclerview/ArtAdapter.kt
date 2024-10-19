@@ -13,17 +13,31 @@ import com.example.api_project_aurelio.recyclerview.ArtworkViewHolder
 // - Adapter to handle the display of artwork data in a RecyclerView
 // - Responsible for creating ViewHolder instances and binding data to the RecyclerView
 
+// Implementations:
+// - RecyclerView xml layout (fragment_dashboard)
+// - xml layout for ViewHolder (item_layout_restful_api_service xml)
+// - Create Adapter
+// - Create ViewHolder class
+// - ViewModel -> to manage data flow
+// - Set data in fragment
+
 // Adapter class to manage the artwork data
-class ArtAdapter(private var artworkList: List<ArtworkEntity> = emptyList(),
-                 private val navigationFunction: (ArtworkEntity) -> Unit) :
+class ArtAdapter(
+    private var artworkList: List<ArtworkEntity> = emptyList(),
+
+    private val navigationFunction: (ArtworkEntity) -> Unit) :
+
     RecyclerView.Adapter<ArtworkViewHolder>() {
 
+        // Creates new VideHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtworkViewHolder {
+        // Using the item_layout_restful_api_service xml
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_layout_restful_api_dev, parent, false)
         return ArtworkViewHolder(view)
     }
 
+    // Binds the data to ViewHolder
     override fun onBindViewHolder(holder: ArtworkViewHolder, position: Int) {
         // Fetch the art item index
         val artwork = artworkList[position]
@@ -36,6 +50,7 @@ class ArtAdapter(private var artworkList: List<ArtworkEntity> = emptyList(),
         }
     }
 
+    // Returns a total number of the items
     override fun getItemCount(): Int {
         return artworkList.size
     }

@@ -23,9 +23,11 @@ import kotlinx.coroutines.launch
 // - Uses a ViewModel to fetch and observe the list of artworks
 // - Binds the artwork data to the RecyclerView using ArtAdapter
 
+// Enable Hilt injection
 @AndroidEntryPoint
 class FragmentDashboard : Fragment() {
 
+    // Initialized Dependency Injections
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var artAdapter: ArtAdapter
 
@@ -43,7 +45,9 @@ class FragmentDashboard : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Define the navigation function lambda using safeArgs
+        // Lambda is like passing a parameter in Java
         val navigationFunctionLambda: (ArtworkEntity) -> Unit = { artwork ->
+
             // Use safeArgs to navigate to details fragment, passing the artwork data
             val action = FragmentDashboardDirections.actionFragmentDashboardToFragmentDetails(
                 title = artwork.artworkTitle,
@@ -52,12 +56,18 @@ class FragmentDashboard : Fragment() {
                 year = artwork.year,
                 description = artwork.description
             )
+
+            // Navigate to action (Details)
             findNavController().navigate(action)
         }
 
-        // Initialize views
+        // Initialize recyclerViews from the fragment_dashboard ID
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
+        // initialized artAdapter and pass function navigate lambda when clicked
         artAdapter = ArtAdapter(navigationFunction = navigationFunctionLambda)
+
+        // Connect ArtAdapter to RecyclerView to displays data
         recyclerView.adapter = artAdapter
 
         // Collect the artworkEntities flow and update RecyclerView
@@ -65,6 +75,7 @@ class FragmentDashboard : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 dashboardViewModel.artworkEntities.collect { artworks ->
                     artAdapter.submitList(artworks)
+                    // submitList -> in  ArtAdapter
                 }
             }
         }

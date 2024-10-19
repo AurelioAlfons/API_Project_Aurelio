@@ -10,5 +10,6 @@
         />
     <item android:title="Details"
         android:id="@+id/Navigation_details"
-        android:icon="@drawable/info_24px"/>
+        android:icon="@drawable/info_24px"
+        android:visible="false"/>
 </menu>

@@ -4,7 +4,6 @@ package com.example.api_project_aurelio
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 // Add this to ensure the app runs with DI
 // We need to add this to every activity or fragment that use Dependency Injection
-// So confusing
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

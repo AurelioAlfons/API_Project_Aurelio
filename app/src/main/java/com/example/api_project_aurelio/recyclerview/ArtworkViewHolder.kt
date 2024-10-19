@@ -13,6 +13,9 @@ import com.example.api_project_aurelio.data.ArtworkEntity
 
 // ViewHolder class to hold references to views for each item
 class ArtworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+    // Right: is from the item_layout_restful_api_dev
+    // Left: is a declared values
     private val title: TextView = view.findViewById(R.id.title)
     private val artist: TextView = view.findViewById(R.id.name)
     private val year: TextView = view.findViewById(R.id.year)
@@ -20,6 +23,9 @@ class ArtworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     // Bind the data to the views
     @SuppressLint("SetTextI18n")
+
+    // Right: is from the ArtworkEntity Class
+    // Left: if from initialize item up there
     fun bind(artwork: ArtworkEntity) {
         title.text = artwork.artworkTitle
         artist.text = artwork.artist

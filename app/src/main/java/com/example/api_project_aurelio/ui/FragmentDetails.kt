@@ -16,9 +16,11 @@ import dagger.hilt.android.AndroidEntryPoint
 // Purpose:
 // - Take data from dashboard recyclerview and list it inside material card
 
+// Enable Hilt injection
 @AndroidEntryPoint
 class FragmentDetails : Fragment() {
 
+    // Retrieves data from previous fragment
     private val args: FragmentDetailsArgs by navArgs()
 
     // Use the fragment_details xml
@@ -41,6 +43,7 @@ class FragmentDetails : Fragment() {
         view.findViewById<TextView>(R.id.cardYear).text = args.year.toString()
         view.findViewById<TextView>(R.id.cardDescription).text = args.description
 
+        // Navigate back to previous screen
         val backButton = view.findViewById<Button>(R.id.back)
         backButton.setOnClickListener {
             // Navigate back to the dashboard fragment

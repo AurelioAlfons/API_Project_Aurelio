@@ -17,18 +17,31 @@ import javax.inject.Inject
 // - Fetches artwork data using the API and stores it in a MutableStateFlow
 // - Uses Hilt for dependency injection
 
+// Let Hilt know that this file will be Injected with dependencies
 @HiltViewModel
+
+// CLASS: LoginViewModel - DEPENDENCY INJECTION
 class DashboardViewModel @Inject constructor(
+
+    // DEPENDENCY INJECTIONS:
+
+    // - apiService: Injected for API calls <-- NetworkModule
     private val apiService: RestfulApiDevService,
-    @ApplicationContext private val appContext: Context // Inject the application context
+
+    // - appContext: Injected for accessing shared preferences <-- Built in
+    @ApplicationContext private val appContext: Context
+
 ) : ViewModel() {
 
-    // MutableStateFlow to hold artwork entities
+    // MutableStateFlow to hold artwork entities -> values can change
+    // Starts of as empty list
     private val _artworkEntities = MutableStateFlow<List<ArtworkEntity>>(emptyList())
     val artworkEntities: StateFlow<List<ArtworkEntity>> = _artworkEntities
 
     // Fetch artwork data from API
     fun fetchArtworks() {
+
+        // Coroutine
         viewModelScope.launch {
             try {
                 val sharedPreferences = appContext.getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE)
@@ -38,9 +51,13 @@ class DashboardViewModel @Inject constructor(
                     val apiResponse = apiService.getArt(keypass)
                     _artworkEntities.value = apiResponse.entities
                 }
-            } catch (e: Exception) {
-                // Handle errors here if needed
+
+            } // Handle errors here if needed
+            catch (e: Exception) {
+
             }
-        }
-    }
-}
+        } // End of Coroutine
+
+    } // End of fetchArtworks()
+
+} // Class

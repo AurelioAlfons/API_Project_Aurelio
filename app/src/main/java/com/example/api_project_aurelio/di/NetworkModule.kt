@@ -16,13 +16,18 @@ import javax.inject.Singleton
 // - Calling the RestfulApiDevService Interface to make network request
 // - Connect ViewModel and API service
 
-// CLASS: NetworkModule
+// Informs dagger this is a Dagger Module for Dependency Injection
 @Module
+// Module's Singleton making it available throughout the app
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
 
+// OBJECT: NetworkModule
+object NetworkModule {
+    // Inform hilt, this function will add Dependency
     @Provides
+    // One API is shared
     @Singleton
+    // function to call for API
     fun provideApiService(): RestfulApiDevService {
         // Provide RestfulApiDevService automatically via Hilt
         return RestfulApiDevRetrofitClient.apiService

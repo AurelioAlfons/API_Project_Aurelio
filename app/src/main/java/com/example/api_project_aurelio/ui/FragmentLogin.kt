@@ -26,7 +26,8 @@ import kotlinx.coroutines.launch
 // - Connects with LoginViewModel
 // - Handles navigation sign-in button
 
-@AndroidEntryPoint  // Enable Hilt injection
+// Enable Hilt injection
+@AndroidEntryPoint
 class FragmentLogin : Fragment() {
 
     // Initialized var
@@ -34,7 +35,7 @@ class FragmentLogin : Fragment() {
     private lateinit var passwordEditText: EditText
     private lateinit var errorTextView: TextView
 
-    // Use Hilt's ViewModel injection
+    // Use Hilt's ViewModel injection from LoginViewModel
     private val loginViewModel: LoginViewModel by viewModels()
 
     // Layout: fragment_login
@@ -42,6 +43,7 @@ class FragmentLogin : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+    // Activity
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,23 +62,35 @@ class FragmentLogin : Fragment() {
 
         // Sign in button OnClickListener
         view.findViewById<Button>(R.id.SignIn).setOnClickListener {
+            // Trim() removes any unnecessary space
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
+
+            // VALIDATION: If else condition
             // If username or password field is empty, show error
             if (username.isEmpty() || password.isEmpty()) {
                 errorTextView.text = "Username and password cannot be empty"
                 errorTextView.visibility = View.VISIBLE
             } else {
-                // Call the login function in ViewModel
+                // Using Coroutine lifecycleScope -> Lives until job is completed
+                // .launch -> don't need to return a result
+                // Call the login function in LoginViewModel
                 lifecycleScope.launch {
+
                     // Successful condition
+                    // Calls loginViewModel() function from the LoginViewModel
+                    // Take username & password
+                    // Wait for keypass to return
                     loginViewModel.login(username, password, onSuccess = { keypass ->
+                        // If keypass return then set the visibility of the error to GONE(Already GONE default)
                         errorTextView.visibility = View.GONE
                         // Navigate to the dashboard if login is successful
+                        // function declare at line:102
                         navigateToDashboard()
+
                     }, onError = { errorMessage ->
-                        // Error condition
+                        // Error condition - All in the LoginViewModel
                         errorTextView.text = "Login failed: $errorMessage"
                         errorTextView.visibility = View.VISIBLE
                     })
@@ -87,14 +101,16 @@ class FragmentLogin : Fragment() {
 
     // Function to navigate to Dashboard
     private fun navigateToDashboard() {
+        // Create value navOptions to handle builder (Configuration) for the function
         val navOptions = NavOptions.Builder()
+            // This removes the back stack when navigating to different fragment
             .setPopUpTo(R.id.fragmentLogin, true)
             .build()
 
-        // Move from login to dashboard
+        // Move from login to dashboard - while calling the navOptions value
         findNavController().navigate(R.id.action_fragmentLogin_to_fragmentDashboard, null, navOptions)
 
-        // Update the bottom navigation selectedId to Dashboard
+        // Update the bottom navigation selectedId to Dashboard, so the selected navbar goes to Dashboard
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.Navigation_dash
     }
 }
