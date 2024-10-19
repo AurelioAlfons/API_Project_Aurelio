@@ -22,9 +22,11 @@ import org.junit.Test
 // - Verifies fetchArtworks() updates artworkEntities correctly
 // - Ensures ViewModel handles API response properly
 
+// Experimental Coroutine feature
 @OptIn(ExperimentalCoroutinesApi::class)
 class DashboardViewModelTest {
 
+    // Initialized
     private lateinit var viewModel: DashboardViewModel
     private lateinit var apiService: RestfulApiDevService
     private lateinit var sharedPreferences: SharedPreferences
@@ -42,8 +44,9 @@ class DashboardViewModelTest {
     )
 
     @Before
+    // Prepares the testing environment
     fun setUp() {
-        // Mock the apiService
+        // Mock the apiService to simulate without actually calling the API
         apiService = mockk()
 
         // Mock the Context and SharedPreferences
