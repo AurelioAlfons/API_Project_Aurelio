@@ -11,6 +11,9 @@ import retrofit2.http.POST
 
 // Purpose:
 // - Contains the 2 API Endpoints: @POST("footscray/auth") & @GET("dashboard/art")
+
+// Includes methods of fetching and posting data to the API
+// Its like using POSTMAN to test the API
 interface RestfulApiDevService {
 
     // POST
@@ -22,9 +25,10 @@ interface RestfulApiDevService {
     // This is to get the art data
     @GET("dashboard/art")
     suspend fun getArt(
+        // Header is used to send extra information (token)
         @Header("Authorization") keypass: String
     ): ApiResponse
-    // Includes the keypass, and it returns ApiResponse
+    // Includes the keypass, and it returns ApiResponse -> Data folder
 }
 
 

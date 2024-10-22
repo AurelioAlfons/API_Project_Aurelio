@@ -5,6 +5,7 @@
     android:id="@+id/fragmentDashboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".ui.FragmentDashboard">
 
     <!-- Tap Layout -->
@@ -12,6 +13,8 @@
         android:id="@+id/Tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#1B1A1A"
+        app:tabTextColor="@color/white"
         tools:ignore="MissingConstraints">
 
         <!-- Layout No 1 -->
@@ -19,13 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dashboard"
-            tools:ignore="HardcodedText" />
-
-        <!-- Layout No 2 -->
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Visualize"
             tools:ignore="HardcodedText" />
 
     </com.google.android.material.tabs.TabLayout>

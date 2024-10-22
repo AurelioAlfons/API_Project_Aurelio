@@ -41,7 +41,6 @@ object RestfulApiDevRetrofitClient {
         .client(client)
         .build()
 
-    // apiService define in NetworkModule
-    // API service for making requests
+    // API service for making requests (apiService.login() // apiService.getArt()) - DevService
     val apiService: RestfulApiDevService = retrofit.create(RestfulApiDevService::class.java)
 }

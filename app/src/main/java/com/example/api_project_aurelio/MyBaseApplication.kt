@@ -9,6 +9,7 @@ import dagger.hilt.android.HiltAndroidApp
 // - @HiltAndroidApp -> Entry point for dependency injection
 // - Make dependencies available global like a global class
 
+// Application level dependency container
 @HiltAndroidApp
 class MyBaseApplication: Application() {
 

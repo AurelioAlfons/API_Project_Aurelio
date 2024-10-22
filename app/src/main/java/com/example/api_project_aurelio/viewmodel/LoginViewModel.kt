@@ -22,9 +22,11 @@ import javax.inject.Inject
 // - Also has Coroutines
 
 // Let Hilt know that this file will be Injected with dependencies
+// HiltViewModel added to viewModels in project
 @HiltViewModel
 
 // CLASS: LoginViewModel - DEPENDENCY INJECTION
+// Inject will request dependencies and automatically provide the tools when class is created
 class LoginViewModel @Inject constructor(
 
     // DEPENDENCY INJECTIONS:
@@ -43,15 +45,18 @@ class LoginViewModel @Inject constructor(
     // - Unit -> Return type but not return a value
     fun login(username: String, password: String, onSuccess: (String) -> Unit, onError: (String) -> Unit) {
 
-        // Launch coroutine in viewModelScope to handle background task
+        // Launch coroutine in viewModelScope to launch activities in background without blocking the UI
+        // When clicking the Sign In button it handles the network request and wait for response
+        // Once the ViewModel is cleared it will cancel the Coroutines
         viewModelScope.launch {
-
+            // Used for handling errors and catch errors
             try {
-                // Use API service to call login
+                // Use API service to call login send username & password
                 val loginResponse = apiService.login(LoginRequest(username, password))
+                // Return a response
                 val keypass = loginResponse.keypass
 
-                // Save keypass in SharedPreferences
+                // Save keypass in SharedPreferences -> Small bits of data in internal storage
                 // APP_PREFS -> storage for data
                 // Context.MODE_PRIVATE -> Ensures only this app can access
                 val sharedPreferences = appContext.getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE)

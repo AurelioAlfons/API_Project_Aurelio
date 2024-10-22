@@ -18,6 +18,7 @@ import javax.inject.Inject
 // - Uses Hilt for dependency injection
 
 // Let Hilt know that this file will be Injected with dependencies
+// Also use HiltViewModel
 @HiltViewModel
 
 // CLASS: LoginViewModel - DEPENDENCY INJECTION

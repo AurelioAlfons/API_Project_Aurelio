@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
+    // Hilt - DI
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.kapt")
 }
@@ -89,6 +90,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 }
+// Allow references to generate code
 kapt {
     correctErrorTypes = true
 }
