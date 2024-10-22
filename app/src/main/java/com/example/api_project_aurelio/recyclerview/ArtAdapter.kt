@@ -23,8 +23,10 @@ import com.example.api_project_aurelio.recyclerview.ArtworkViewHolder
 
 // Adapter class to manage the artwork data
 class ArtAdapter(
+    // It was an empty list before
     private var artworkList: List<ArtworkEntity> = emptyList(),
-
+    // So this will navigate to Details with the selected list data
+    // Unit doesn't return anything like void
     private val navigationFunction: (ArtworkEntity) -> Unit) :
 
     RecyclerView.Adapter<ArtworkViewHolder>() {
@@ -38,6 +40,7 @@ class ArtAdapter(
     }
 
     // Binds the data to ViewHolder
+    // We use the holder bind inside the ArtWorkViewHolder
     override fun onBindViewHolder(holder: ArtworkViewHolder, position: Int) {
         // Fetch the art item index
         val artwork = artworkList[position]
@@ -46,7 +49,8 @@ class ArtAdapter(
 
         // Find the button in the item layout and set a click listener
         holder.itemView.findViewById<Button>(R.id.goToDetails).setOnClickListener {
-            navigationFunction(artwork) // Pass the clicked artwork to the lambda
+            // Pass the clicked artwork to the lambda
+            navigationFunction(artwork)
         }
     }
 

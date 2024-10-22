@@ -25,7 +25,7 @@ class ArtworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     @SuppressLint("SetTextI18n")
 
     // Right: is from the ArtworkEntity Class
-    // Left: if from initialize item up there
+    // Left: is from initialize item up there
     fun bind(artwork: ArtworkEntity) {
         title.text = artwork.artworkTitle
         artist.text = artwork.artist
