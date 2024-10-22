@@ -6,6 +6,7 @@ import com.squareup.moshi.JsonClass
 // Generates Moshi Adapter to convert JSON to Kotlin objects
 @JsonClass(generateAdapter = true)
 
+// Data class stores data Only cannot be extend
 // API response of how manny items in the list
 data class ApiResponse(
     // List of the objects from  <ArtworkEntity>

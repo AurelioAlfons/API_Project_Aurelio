@@ -23,15 +23,18 @@ import com.example.api_project_aurelio.recyclerview.ArtworkViewHolder
 
 // Adapter class to manage the artwork data
 class ArtAdapter(
+    //
     // It was an empty list before
     private var artworkList: List<ArtworkEntity> = emptyList(),
+    //
     // So this will navigate to Details with the selected list data
     // Unit doesn't return anything like void
     private val navigationFunction: (ArtworkEntity) -> Unit) :
-
+    //
+    // Creates new ViewHolder
     RecyclerView.Adapter<ArtworkViewHolder>() {
+    //
 
-        // Creates new VideHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtworkViewHolder {
         // Using the item_layout_restful_api_service xml
         val view = LayoutInflater.from(parent.context)
@@ -39,6 +42,7 @@ class ArtAdapter(
         return ArtworkViewHolder(view)
     }
 
+    //
     // Binds the data to ViewHolder
     // We use the holder bind inside the ArtWorkViewHolder
     override fun onBindViewHolder(holder: ArtworkViewHolder, position: Int) {
@@ -53,13 +57,16 @@ class ArtAdapter(
             navigationFunction(artwork)
         }
     }
+    // End of Binding
 
-    // Returns a total number of the items
+    //
+    // Returns a total number of the items - Follow GitHub
     override fun getItemCount(): Int {
         return artworkList.size
     }
 
-    // Update the list of artwork entities and notify the adapter
+    //
+    // Update the list of artwork entities and notify the adapter - GitHub
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(artworks: List<ArtworkEntity>) {
         artworkList = artworks

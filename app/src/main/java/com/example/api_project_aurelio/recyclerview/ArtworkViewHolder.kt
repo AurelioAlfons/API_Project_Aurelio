@@ -22,10 +22,9 @@ class ArtworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val medium: TextView = view.findViewById(R.id.medium)
 
     // Bind the data to the views
-    @SuppressLint("SetTextI18n")
-
     // Right: is from the ArtworkEntity Class
     // Left: is from initialize item up there
+    @SuppressLint("SetTextI18n")
     fun bind(artwork: ArtworkEntity) {
         title.text = artwork.artworkTitle
         artist.text = artwork.artist

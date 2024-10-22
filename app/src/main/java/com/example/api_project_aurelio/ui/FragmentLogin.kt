@@ -48,11 +48,12 @@ class FragmentLogin : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize views
+        // Initialize views with the textField from the login fragment xml
         usernameEditText = view.findViewById(R.id.usernameInput)
         passwordEditText = view.findViewById(R.id.passwordInput)
         errorTextView = view.findViewById(R.id.errorButton)
 
+        // Built in
         // Handle edge-to-edge display adjustments
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -62,10 +63,10 @@ class FragmentLogin : Fragment() {
 
         // Sign in button OnClickListener
         view.findViewById<Button>(R.id.SignIn).setOnClickListener {
-            // Trim() removes any unnecessary space
+            // Trim() removes any unnecessary space from the value - take from the
+            // declare new value from the editText with trim() string
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
-
 
             // VALIDATION: If else condition
             // If username or password field is empty, show error
