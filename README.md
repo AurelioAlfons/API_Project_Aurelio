@@ -19,15 +19,22 @@ Features
 - Simple, clean user interface following Material Design guidelines
 - Proper navigation between screens
 - Data fetching and display in Dashboard and Details screens
+- Dependency injection using Hilt for managing objects efficiently
+- Lambda functions for concise, flexible code logic
 
 Dependencies
 The project uses the following dependencies:
+- Safe argument
 - Retrofit for API calls
 - Moshi for JSON parsing
 - Material Design 3 for UI components
 - OkHttp for HTTP logging
+- Hilt for dependency injection
+- JUnit for unit testing of lambda functions and other components
 
 How to Build and Run the App
+
+!!ENSURE!!: Using the Koala Android Studio Version
 
 Step 1:
 - Copy the GitHub repository link and paste it into your browser.
