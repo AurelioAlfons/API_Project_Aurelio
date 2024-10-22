@@ -48,3 +48,15 @@ Step 2:
 
 Step 3:
 - Run the app on the Android Studio Emulator or a connected Android device by clicking the Run button or pressing Shift + F10.
+
+Step 4:
+- App will display the Login Page
+- Enter Username: Aurelio
+- Enter Password: s4672291
+- Ensuring the proper credentials
+- Click the Sign In Button
+- Wait until it navigates to dashboard page upon success
+- Scroll throught the RecyclerView
+- Click on Show data in any of the List Entity
+- Navigates to Details
+- Click Go back to return
