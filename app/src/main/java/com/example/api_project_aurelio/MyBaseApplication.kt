@@ -8,6 +8,12 @@ import dagger.hilt.android.HiltAndroidApp
 // - Initialized Hilt dependencies
 // - @HiltAndroidApp -> Entry point for dependency injection
 // - Make dependencies available global like a global class
+// - Does not receive DI but declaring the app will use DI
+
+// Implementation:
+// - @HiltAndroidApp => sets up DI globally.
+// - @AndroidEntryPoint => injects dependencies into activities/fragments.
+// - @HiltViewModel => injects dependencies into ViewModels.
 
 // Application level dependency container
 @HiltAndroidApp

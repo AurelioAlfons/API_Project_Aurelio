@@ -21,6 +21,9 @@ import org.junit.Test
 // - Mocks API & SharedPreferences
 // - Verifies fetchArtworks() updates artworkEntities correctly
 // - Ensures ViewModel handles API response properly
+// - Create fake DashboardViewModel with fake API
+// - Simulate the API to return 2 entity that we added manually here
+// - After that it updates the List
 
 // Experimental Coroutine feature
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -71,11 +74,6 @@ class DashboardViewModelTest {
 
         // Initialize ViewModel with mocked apiService and context
         viewModel = DashboardViewModel(apiService, mockContext)
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
     }
 
     @Test
