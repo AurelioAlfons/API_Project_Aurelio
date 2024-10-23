@@ -52,7 +52,7 @@ class LoginViewModel @Inject constructor(
             // Used for handling errors and catch errors
             try {
                 // Use API service to call login send username & password
-                val loginResponse = apiService.login(LoginRequest(username, password))
+                val loginResponse = apiService.loginService(LoginRequest(username, password))
                 // Return a response
                 val keypass = loginResponse.keypass
 

@@ -19,7 +19,7 @@ interface RestfulApiDevService {
     // POST
     // This is for login
     @POST("footscray/auth")
-    suspend fun login(@Body request: LoginRequest): LoginResponse
+    suspend fun loginService(@Body request: LoginRequest): LoginResponse
 
     // GET
     // This is to get the art data
